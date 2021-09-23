@@ -1,11 +1,13 @@
 package com.example.fetchbackend.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
     private String id;
-    private List<Payer> payerList;
+    private List<Payer> payerList = new ArrayList<Payer>();
+    private List<Transaction> transactionList = new ArrayList<Transaction>();
 
     public User(){
 
@@ -19,4 +21,19 @@ public class User {
         this.id = id;
     }
 
+    public List<Payer> getPayerList() {
+        return payerList;
+    }
+
+    public void setPayerList(List<Payer> payerList) {
+        this.payerList = payerList;
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
 }
