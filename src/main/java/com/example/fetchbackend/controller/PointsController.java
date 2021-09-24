@@ -37,7 +37,7 @@ public class PointsController {
     public User addPoints(@PathVariable String id, @RequestBody Transaction transaction){
         Log.debug("Recieved points create request for user id [{}]", id);
 
-        return userService.addPoints(transaction);
+        return userService.addPoints(transaction, id);
     }
 
 

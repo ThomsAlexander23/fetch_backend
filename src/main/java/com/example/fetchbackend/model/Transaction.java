@@ -5,7 +5,7 @@ import java.util.Date;
 public class Transaction {
 
     private Payer payer;
-    private Points points;
+    private int points;
     private Date timestamp;
 
     public Transaction() {
@@ -19,11 +19,11 @@ public class Transaction {
         this.payer = payer;
     }
 
-    public Points getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(Points points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 

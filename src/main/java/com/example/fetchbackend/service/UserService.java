@@ -7,7 +7,7 @@ import com.example.fetchbackend.model.User;
 public interface UserService {
     User createUser(User user);
 
-    User addPoints(Transaction transaction);
+    User addPoints(Transaction transaction, String id);
 
     User spendPoints(Points points);
 

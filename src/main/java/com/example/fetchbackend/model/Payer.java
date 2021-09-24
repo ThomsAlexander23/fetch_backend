@@ -2,7 +2,7 @@ package com.example.fetchbackend.model;
 
 public class Payer {
     private String payerName;
-    private Points points;
+    private int points;
 
     public Payer(){
     }
@@ -16,11 +16,11 @@ public class Payer {
         this.payerName = payerName;
     }
 
-    public Points getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(Points points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
 
     private String id;
+    private String name;
     private List<Payer> payerList = new ArrayList<Payer>();
     private List<Transaction> transactionList = new ArrayList<Transaction>();
 
@@ -35,5 +36,13 @@ public class User {
 
     public void setTransactionList(List<Transaction> transactionList) {
         this.transactionList = transactionList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

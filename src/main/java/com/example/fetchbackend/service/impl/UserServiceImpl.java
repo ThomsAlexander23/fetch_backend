@@ -1,6 +1,7 @@
 package com.example.fetchbackend.service.impl;
 
 import com.example.fetchbackend.dao.UserRepository;
+import com.example.fetchbackend.model.Payer;
 import com.example.fetchbackend.model.Points;
 import com.example.fetchbackend.model.Transaction;
 import com.example.fetchbackend.model.User;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
@@ -20,14 +22,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-    user.setId(UUID.randomUUID().toString());
-userRepository.insert(user);
+        user.setId(UUID.randomUUID().toString());
+        userRepository.insert(user);
         return user;
     }
 
     @Override
-    public User addPoints(Transaction transaction) {
-        return null;
+    public User addPoints(Transaction transaction, String id) {
+        User currentUser = userRepository.getById(id);
+        List<Transaction> currentUserTransactionList = currentUser.getTransactionList();
+        List<Payer> currentUserPayerList = currentUser.getPayerList();
+        currentUserTransactionList.add(transaction);
+        Payer payerContribution = transaction.getPayer();
+        // helper function needed
+        for (Payer payer : currentUserPayerList){
+            if (payerContribution.getPayerName() == payer.getPayerName()){
+                payer.setPoints(payer.getPoints() + transaction.getPoints());
+
+            }
+        }
+        currentUser.setPayerList(currentUserPayerList);
+        userRepository.insert(currentUser);
+        return currentUser;
     }
 
     @Override
