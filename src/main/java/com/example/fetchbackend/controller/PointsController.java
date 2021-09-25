@@ -1,5 +1,6 @@
 package com.example.fetchbackend.controller;
 
+import com.example.fetchbackend.model.Payer;
 import com.example.fetchbackend.model.Points;
 import com.example.fetchbackend.model.Transaction;
 import com.example.fetchbackend.model.User;
@@ -8,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class PointsController {
@@ -26,7 +29,7 @@ public class PointsController {
         }
 
     @GetMapping("user/{id}/points")
-    public Points readBalance(@PathVariable String id){
+    public List<Payer> readBalance(@PathVariable String id){
         Log.debug("Recieved user read request for id [{}]", id);
 
         return userService.readBalance(id);

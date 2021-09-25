@@ -52,7 +52,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Points readBalance(String id) {
-        return null;
+    public List<Payer> readBalance(String id) {
+        User user = userRepository.getById(id);
+        return user.getPayerList();
     }
 }
