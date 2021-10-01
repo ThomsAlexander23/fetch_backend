@@ -47,7 +47,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User spendPoints(Points points) {
+    public User spendPoints(Points points, String id) {
+        User user = userRepository.getById(id);
+        List<Transaction> transactionList = user.getTransactionList();
+        // sort list according to date
+        // method to subtract points
+        // method to update partner balance
         return null;
     }
 

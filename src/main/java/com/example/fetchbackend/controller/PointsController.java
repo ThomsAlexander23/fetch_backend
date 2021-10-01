@@ -48,6 +48,6 @@ public class PointsController {
         public User spendPoints(@PathVariable String id, @RequestBody Points points ) {
         Log.debug("Recieved points create request for user id [{}]", id);
 
-        return userService.spendPoints(points);
+        return userService.spendPoints(points, id);
     }
 }

@@ -12,7 +12,7 @@ public interface UserService {
 
     User addPoints(Transaction transaction, String id);
 
-    User spendPoints(Points points);
+    User spendPoints(Points points, String id);
 
     List<Payer> readBalance(String id);
 }
