@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,10 +50,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public User spendPoints(Points points, String id) {
         User user = userRepository.getById(id);
-        List<Transaction> transactionList = user.getTransactionList();
         // sort list according to date
+        List<Transaction> transactionList = user.getTransactionList();
+        List <Payer> pointsSpent = new ArrayList<>();
+        for (Transaction transaction : transactionList){
+            if (transaction.getPoints() >= points.getPoints()) {
+                pointsSpent = user.getPayerList();
+                for (Payer payer : pointsSpent){
+                    if (payer.getPayerName().equalsIgnoreCase(transaction.getPayer().getPayerName())){
+                        // method to update partner balance
+                        payer.setPoints(payer.getPoints()-transaction.getPoints());
+                    }
+                    continue;
+                }
+            }
+            continue;
+        }
         // method to subtract points
-        // method to update partner balance
+
         return null;
     }
 
