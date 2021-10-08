@@ -60,15 +60,19 @@ public class UserServiceImpl implements UserService {
                     if (payer.getPayerName().equalsIgnoreCase(transaction.getPayer().getPayerName())){
                         // method to update partner balance
                         payer.setPoints(payer.getPoints()-transaction.getPoints());
+                    } else {
+                        continue;
                     }
-                    continue;
                 }
+                user.setPayerList(pointsSpent);
+                userRepository.save(user);
+            } else {
+
             }
-            continue;
         }
         // method to subtract points
 
-        return null;
+        return user;
     }
 
     @Override
